@@ -14,16 +14,12 @@ ETL is a standard way of handling data.
     * Load:         Generate charts, graphs, & metrics to help understand the data
 
 ## Languages & their use
-* Bash
-
-Shell scripts are utilized for:
+* Bash: Shell scripts are utilized for:
     * Homebrew Installation (a lightweight package manger)
     * Python3.9 Installation
     * Creating a virtual environment (to isolate packages from global)
     * Installing packages & activating the virtual environment
 
-* Python
-
-Python3.9 is used for everything else
+* Python3.9 is used for everything else
 ## References
 * [IBM ETL](https://www.ibm.com/topics/etl)
