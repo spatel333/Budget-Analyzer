@@ -15,6 +15,7 @@ ETL is a standard way of handling data.
 
 ## Languages & their use
 * Bash
+
 Shell scripts are utilized for:
     * Homebrew Installation (a lightweight package manger)
     * Python3.9 Installation
@@ -22,6 +23,7 @@ Shell scripts are utilized for:
     * Installing packages & activating the virtual environment
 
 * Python
+
 Python3.9 is used for everything else
 ## References
 * [IBM ETL](https://www.ibm.com/topics/etl)
