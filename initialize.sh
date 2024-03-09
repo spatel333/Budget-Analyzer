@@ -49,21 +49,37 @@ fi
 
 
 ### Homebrew Installation (a lightweight package manger)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew update
+command -v brew >/dev/null 2>/dev/null
+if [ $? == 0 ]
+then
+    echo -n "✅︎ "
+    brew --version
+else
+    echo "❌ Homebrew not installed"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew update
+fi
 
 ### Python3.9 Installation
-brew install python3.9
+command -v python3.9 >/dev/null
+if [ $? == 0 ]
+then
+    echo -n "✅︎ "
+    python3.9 --version
+else
+    echo "❌ Python3.9 not installed"
+    sudo apt install python3.9-venv
 
 ### Create a virtual environment (to isolate packages from global)"
 mkdir -p ~/.venvs/  # useful to keep track of venvs
 python3.9 -m venv ~/.venvs/finance
 source ~/.venvs/finance/bin/activate    # activate venv
-pip install --upgrade pip   # update pip
+# pip install --upgrade pip   # update pip
 
 ### Install packages & activate virtual environment
-pip install wheel
-pip install matplotlib numpy pandas PyPDF2
+# pip install wheel
+# pip install matplotlib numpy pandas PyPDF2
+python install -r requirements.txt
 
 echo -e "\n\n\n"
 print("We did it!! Woohoo!!!")
