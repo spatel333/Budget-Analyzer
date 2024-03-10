@@ -1,26 +1,23 @@
 import extract
 import transform
 import load
-import login
 import csv
 
 
 def main():
-    script_name = __file__.split('/')[-1]
-    print(f'{script_name}')
-
     extract.main()
     transform.main()
     load.main()
 
     print("\n\n")
     print("Welcome to the menu. Let's check our data")
-    login()
-
-
-
+    extract.login()
 
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    script_name = __file__.split('/')[-1]
+    print(f'{script_name}')
+    [print(f'\t{x}') for x in locals().values() if callable(x)]
+    # [print(x) for x in locals().items()]

@@ -1,10 +1,5 @@
 import subprocess
 
-def main():
-    script_name = __file__.split('/')[-1]
-
-    print(f'{script_name}')
-
 def login():
     while(True):
         prompt = input("Want to update credentials? [y/n]: ")
@@ -14,18 +9,10 @@ def login():
             print("Using existing credentials")
             break
 
-
-
     ### TODO:
         # Make an API call to bank site
         # Acknowledge Successful Login
-    msg = "Here we'd be implementing an API Call to the bank institution"
-    [print('*') for i in len(msg)]
-    print(msg)
-    [print('*') for i in len(msg)]
-    ###
-
-
+    query_site()
 
     print("Login Complete!")
 
@@ -46,10 +33,12 @@ def grab_credentials():
 def query_site():
     # check for stored credentials
     # queary API
-    site = "www.google.com"
+    site = "www.fakewebsite.com"
     print(f'{site}')
 
 
 
 if __name__ == "__main__":
-    main()
+    script_name = __file__.split('/')[-1]
+    print(f'{script_name}')
+    [print(f'\t{x}') for x in locals().values() if callable(x)]
