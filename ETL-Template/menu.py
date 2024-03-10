@@ -1,5 +1,8 @@
-import extract, transform, load
-import os
+from pathlib import Path
+import extract
+import transform
+import load
+import subprocess
 import csv
 
 
@@ -7,24 +10,26 @@ def main():
     script_name = __file__.split('/')[-1]
     print(f'{script_name}')
 
+    extract.main()
+    transform.main()
+    load.main()
+
+    print("\n\n")
     print("Welcome to the menu. Let's check our data")
     login()
-    
-    transform.main()
 
 def login():
-    credentials_path = "./credentials.txt"
-    
-    # check time of last credentials update & advise password change
 
-    # if empty, prompy for creds
+    # open file in which we'll save credentials
+    credentials_path = "./credentials.txt"
+    subprocess.run(['touch', credentials_path])
+
+    # prompt for credentials
     username = input("Username: ")
     password = input("Password: ")
 
-    with open(credentials_path) as credentials_file:
-        credentials_file.writelines({"username": username,"Password": password})
-        # credentials_file.wri
-
+    with open(credentials_path, 'w') as creds_file:
+        creds_file.write(f'{username}\n{password}')
 
 
 
