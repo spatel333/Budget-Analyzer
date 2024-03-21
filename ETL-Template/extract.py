@@ -5,10 +5,21 @@ def main():
 
 
 def query_site():
-    # check for stored credentials
-    # queary API
-    site = "www.google.com"
-    print(f'{site}')
+
+    ###TODO
+    # leverage Plaid to sign into bank institutions & pull transaction data
+    # pull from specified banking platform
+        # which dates?
+        # which bank?
+        # which account?
+    
+    return load_local_data()
+
+def load_local_data():
+    print("grab local .csv files")
+    with open("../bank_statements/sample_data.csv", "r") as csv_file:
+
+
 
 
 
