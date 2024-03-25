@@ -6,7 +6,7 @@ def main():
 
 def query_site():
 
-    ###TODO
+    ###TODO###
     # leverage Plaid to sign into bank institutions & pull transaction data
     # pull from specified banking platform
         # which dates?
@@ -18,6 +18,9 @@ def query_site():
 def load_local_data():
     print("grab local .csv files")
     with open("../bank_statements/sample_data.csv", "r") as csv_file:
+        
+        ###TODO###
+        print ("placeholder")
 
 
 
