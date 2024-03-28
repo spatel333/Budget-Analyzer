@@ -1,7 +1,8 @@
 import requests
 import locale
-import subprocess
-import json
+from bs4 import BeautifulSoup
+from re import sub
+from decimal import Decimal
 """
 WE HIT THE JACKPOT!!!! WOOHOO!!!
 Now the question is... where do we put this money?
@@ -15,43 +16,30 @@ def main():
     print(f'Congrats on winning {gross_winnings_as_currency}')
     # taxes = pull_taxation(gross_winnings)
 
-def pull_current_lotto_winnings():
+def pull_current_lotto_winnings() -> Decimal:
     # url = "https://data.ny.gov/resource/d6yy-54nr.json"
     
-    url = "https://www.magayo.com/api/jackpot.php"
-    api_key = "api_key=XSCztE26Ei97YzYMrA"
-    field = "game=us_powerball"
-    response = requests.get(f'{url}?{api_key}&{field}')
-    data = response.json()
+    # pull webpage
+    url = "https://www.magayo.com/lotto/usa/powerball-results/"
+    response = requests.get(url)
+    
+    # scrape webpage for jackpot data
+    soup = BeautifulSoup(response.content, "html.parser")
+    results = soup.find(class_="col-lg")
 
-    if data['error'] == 303:
-        print('API query limit reached')
-        with open("jackpot_data.txt", "r") as jackpot_save_file:
-            file_as_json = json.load(jackpot_save_file.read())
-            print(f'printing from file: {file_as_json}')
-        return -1
-    else:
-        print('Limit not reached')
-        # subprocess.Popen([f'echo {data} > jackpot_data.txt'], shell=True)
-        to_be_saved = {}
-        to_be_saved['error'] = data['error']
-        to_be_saved['next_draw'] = data['next_draw']
-        to_be_saved['currency'] = data['currency']
-        to_be_saved['jackpot'] = data['jackpot']
-        with open("jackpot_data.txt", "w") as jackpot_save_file:
-            jackpot_save_file.write(to_be_saved.__str__())
-
-        return
-        
-
-    # response = {'error': 303, 'next_draw': '', 'currency': 'USD', 'jackpot': ''}
+    # convert jackpot from currency to decimal value
+    amount_as_currency = results.text[results.text.find('$'):]
+    amount_as_decimal = Decimal(sub(r'[^\d.]', '', amount_as_currency))
+    
+    return amount_as_decimal
+    
 
 def winnings_as_currency(gross_winnings: int) -> str:
+    
+    #set locale data 
     locale.setlocale(locale.LC_ALL, 'en_US.utf8')
-    print(f'value: {gross_winnings}')
-    s = locale.currency(gross_winnings, grouping=True)
-    print(s)
 
+    # convert to currency
     return locale.currency( gross_winnings, grouping=True)
 
 
