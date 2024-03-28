@@ -1,1 +1,0 @@
-{'error': 420, 'next_draw': 800000000, 'currency': 'USD', 'jackpot': 750000000}
