@@ -1,6 +1,6 @@
-import extract
-import transform
-import load
+import extract.extract as extract
+import transform.transform as transform
+import load.load as load
 import csv
 
 

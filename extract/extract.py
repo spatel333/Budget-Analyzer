@@ -1,7 +1,11 @@
 def main():
+    # Introduction
     script_name = __file__.split('/')[-1]
-
     print(f'{script_name}')
+
+    # Pull data from various sources
+    graph1 = "Discover"
+    graph2 = "Community Trust"
 
 
 def query_site():
