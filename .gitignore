@@ -1,4 +1,4 @@
-
+*.csv
 *.pdf
 __pycache__
 *.pyc

@@ -1,4 +1,4 @@
-import os
+import os, sys
 import pandas as pd
 import pdfplumber
 
@@ -28,4 +28,5 @@ def extract_text_from_pdf(path_to_pdf):
     return extracted_data
 
 if __name__ == "__main__":
+    print(f"filepath: {sys.argv[1]}")
     print("Hello World")
